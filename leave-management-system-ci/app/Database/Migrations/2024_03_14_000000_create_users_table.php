@@ -30,6 +30,11 @@ class CreateUsersTable extends Migration
                 'type' => 'BOOLEAN',
                 'default' => false,
             ],
+            'is_active' => [
+                'type' => 'TINYINT',
+                'constraint' => 1,
+                'default' => 0,
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,

@@ -157,9 +157,9 @@
                                     </td>
                                     <td>
                                         <?php if (!$user['is_active']): ?>
-                                            <a href="<?= base_url('admin/activate/' . $user['id']) ?>" class="btn btn-success btn-sm">Activate</a>
+                                            <button onclick="toggleActivation(<?= $user['id'] ?>, 'activate')" class="btn btn-success btn-sm">Activate</button>
                                         <?php else: ?>
-                                            <a href="<?= base_url('admin/deactivate/' . $user['id']) ?>" class="btn btn-warning btn-sm">Deactivate</a>
+                                            <button onclick="toggleActivation(<?= $user['id'] ?>, 'deactivate')" class="btn btn-warning btn-sm">Deactivate</button>
                                         <?php endif; ?>
                                         <a href="<?= base_url('admin/edit/' . $user['id']) ?>" class="btn btn-primary btn-sm">Edit</a>
                                         <a href="<?= base_url('admin/delete/' . $user['id']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
@@ -174,4 +174,22 @@
     </div>
 </div>
 <?php endif; ?>
+
+<script>
+function toggleActivation(userId, action) {
+    fetch('<?= base_url('admin/') ?>' + action + '/' + userId, {
+        method: 'GET',
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Reload the page or update the row
+            location.reload();
+        } else {
+            alert('Failed to update user status.');
+        }
+    });
+}
+</script>
 <?= $this->endSection() ?> 

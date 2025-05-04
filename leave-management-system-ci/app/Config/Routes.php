@@ -38,3 +38,6 @@ $routes->group('leave-types', function($routes) {
     $routes->post('update/(:num)', 'LeaveType::update/$1');
     $routes->post('delete/(:num)', 'LeaveType::delete/$1');
 });
+
+$routes->get('admin/activate/(:num)', 'Admin::activate/$1');
+$routes->get('admin/deactivate/(:num)', 'Admin::deactivate/$1');

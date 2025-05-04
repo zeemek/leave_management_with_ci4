@@ -32,6 +32,9 @@ class Auth extends Controller
         $user = $this->userModel->findByEmail($email);
 
         if ($user && $this->userModel->verifyPassword($password, $user['password'])) {
+            if (!$user['is_active']) {
+                return redirect()->back()->with('error', 'Your account is pending admin approval.');
+            }
             $this->session->set([
                 'isLoggedIn' => true,
                 'userId' => $user['id'],
@@ -70,7 +73,8 @@ class Auth extends Controller
             'name' => $this->request->getPost('name'),
             'email' => $this->request->getPost('email'),
             'password' => $this->request->getPost('password'),
-            'is_admin' => 0
+            'is_admin' => 0,
+            'is_active' => 0
         ]);
 
         // Initialize leave balances for the new user
@@ -88,7 +92,7 @@ class Auth extends Controller
             );
         }
 
-        return redirect()->to('/login')->with('success', 'Registration successful. Please login.');
+        return redirect()->to('/login')->with('success', 'Registration successful. Waiting for admin approval.');
     }
 
     public function logout()
