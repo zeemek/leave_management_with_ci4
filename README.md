@@ -23,7 +23,11 @@ A web-based system for managing employee leave requests and approvals.
 
 ### Database Setup
 1. Start your MySQL server
+<<<<<<< HEAD
 2. Import the database schema from `database/leave_management.sql`
+=======
+2. Import the database schema from `database/leave_management_system.sql`
+>>>>>>> ea9b2903bc8ff61d7fddf37c4f8bf75c67eb3099
 3. Update database credentials in `config/database.php` if needed
 
 ### Application Setup
@@ -75,4 +79,8 @@ A web-based system for managing employee leave requests and approvals.
 ```
 
 ## Support
+<<<<<<< HEAD
 For any issues or questions, please contact the system administrator. 
+=======
+For any issues or questions, please contact the system administrator. 
+>>>>>>> ea9b2903bc8ff61d7fddf37c4f8bf75c67eb3099
