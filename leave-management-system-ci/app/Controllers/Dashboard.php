@@ -4,18 +4,21 @@ namespace App\Controllers;
 
 use App\Models\LeaveRequestModel;
 use App\Models\LeaveBalanceModel;
+use App\Models\UserModel;
 use CodeIgniter\Controller;
 
 class Dashboard extends Controller
 {
     protected $leaveRequestModel;
     protected $leaveBalanceModel;
+    protected $userModel;
     protected $session;
 
     public function __construct()
     {
         $this->leaveRequestModel = new LeaveRequestModel();
         $this->leaveBalanceModel = new LeaveBalanceModel();
+        $this->userModel = new UserModel();
         $this->session = session();
     }
 
@@ -35,7 +38,8 @@ class Dashboard extends Controller
         $data = [
             'leaveRequests' => $this->leaveRequestModel->getUserRequests($userId),
             'leaveBalances' => $leaveBalances,
-            'pendingRequests' => $this->session->get('isAdmin') ? $this->leaveRequestModel->getPendingRequests() : []
+            'pendingRequests' => $this->session->get('isAdmin') ? $this->leaveRequestModel->getPendingRequests() : [],
+            'allUsers' => $this->session->get('isAdmin') ? $this->userModel->where('is_admin', 0)->findAll() : []
         ];
 
         return view('dashboard', $data);
