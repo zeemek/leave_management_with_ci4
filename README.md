@@ -20,15 +20,17 @@ A web-based system for managing employee leave requests and approvals.
 ### Prerequisites
 - XAMPP or similar web server with PHP and MySQL
 - Web browser
+- Composer (PHP dependency manager)
+  - Download and install from [https://getcomposer.org/download](https://getcomposer.org/download)
+  - After installation, open cmd and type `composer` to verify installation
+  - Configure PHP: Open `C:\xampp\php\php.ini` and uncomment `;extension=intl` (it should look like `extension=intl`). This is usually found near line 934.
+  - Verify intl extension: Open PowerShell and run `php -m | Select-String intl`. If properly configured, 'intl' will be displayed.
+  - Note: A system reboot/restart is recommended after this configuration to ensure changes take effect.
 
 ### Database Setup
 1. Start your MySQL server
-<<<<<<< HEAD
-2. Import the database schema from `database/leave_management.sql`
-=======
 2. Import the database schema from `database/leave_management_system.sql`
->>>>>>> ea9b2903bc8ff61d7fddf37c4f8bf75c67eb3099
-3. Update database credentials in `config/database.php` if needed
+3. Update database credentials in the `.env` file if needed.
 
 ### Application Setup
 1. Place all files in your web server's document root (e.g., `htdocs`)
@@ -79,8 +81,4 @@ A web-based system for managing employee leave requests and approvals.
 ```
 
 ## Support
-<<<<<<< HEAD
 For any issues or questions, please contact the system administrator. 
-=======
-For any issues or questions, please contact the system administrator. 
->>>>>>> ea9b2903bc8ff61d7fddf37c4f8bf75c67eb3099
