@@ -108,5 +108,9 @@
     
     <!-- Custom JS -->
     <?= $this->renderSection('scripts') ?>
+    
+    <footer class="text-center py-3">
+    <p>&copy; <?= date('Y') ?> Developed by Leishangthem Michael Meitei. All rights reserved.</p>
+    </footer>
 </body>
 </html> 
