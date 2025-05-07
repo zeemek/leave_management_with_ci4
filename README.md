@@ -10,7 +10,7 @@ A web-based system for managing employee leave requests and approvals.
 - Admin Dashboard for Approvals
 
 ## Technology Stack
-- PHP 7.4+
+- PHP 8.1+
 - MySQL 5.7+
 - HTML5, CSS3, JavaScript
 - Bootstrap 5
