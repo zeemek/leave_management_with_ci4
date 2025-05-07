@@ -40,6 +40,19 @@ A web-based system for managing employee leave requests and approvals.
 - Username: `admin@example.com`
 - Password: `admin123`
 
+### Some Users Credentials
+- Username -      - Password -  - Status -
+
+test@gmail.com      test123       Activated
+test1@gmail.com     test123       Activated
+test2@gmail.com     test123       Activated 
+test3@gmail.com     test123       Activated 
+test4@gmail.com     test123       DeActivated 
+test5@gmail.com     test123       DeActivated 
+...
+...
+
+
 ## Usage Instructions
 
 ### Employee Registration
