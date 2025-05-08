@@ -67,7 +67,7 @@ class Modules extends BaseModules
      *
      * Aliases list of all discovery classes that will be active and used during
      * the current application request.
-     *
+     *this project is made with love by laidaba 
      * If it is not listed, only the base application elements will be used.
      *
      * @var list<string>
