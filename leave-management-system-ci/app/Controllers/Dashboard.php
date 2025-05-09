@@ -39,7 +39,8 @@ class Dashboard extends Controller
             'leaveRequests' => $this->leaveRequestModel->getUserRequests($userId),
             'leaveBalances' => $leaveBalances,
             'pendingRequests' => $this->session->get('isAdmin') ? $this->leaveRequestModel->getPendingRequests() : [],
-            'allUsers' => $this->session->get('isAdmin') ? $this->userModel->where('is_admin', 0)->findAll() : []
+            'allUsers' => $this->session->get('isAdmin') ? $this->userModel->where('is_admin', 0)->findAll() : [],
+            'recentLeaveRequests' => $this->session->get('isAdmin') ? array_slice($this->leaveRequestModel->getAllRequests(), 0, 10) : []
         ];
 
         return view('dashboard', $data);

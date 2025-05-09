@@ -81,6 +81,8 @@
 </div>
 
 <?php if (session()->get('isAdmin')): ?>
+
+
 <div class="row mt-4">
     <div class="col-12">
         <div class="card">
@@ -167,6 +169,55 @@
                                         <a href="<?= base_url('admin/edit/' . $user['id']) ?>" class="btn btn-primary btn-sm">Edit</a>
                                         <a href="<?= base_url('admin/delete/' . $user['id']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
                                     </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Recent Leave Requests</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Employee</th>
+                                <th>Leave Type</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Duration</th>
+                                <th>Reason</th>
+                                <th>Status</th>
+                                <th>Applied On</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($recentLeaveRequests as $request): ?>
+                                <tr>
+                                    <td><?= esc($request['user_name']) ?></td>
+                                    <td><?= esc($request['leave_type_name']) ?></td>
+                                    <td><?= date('M d, Y', strtotime($request['start_date'])) ?></td>
+                                    <td><?= date('M d, Y', strtotime($request['end_date'])) ?></td>
+                                    <td><?php 
+                                        $start = new DateTime($request['start_date']);
+                                        $end = new DateTime($request['end_date']);
+                                        echo $start->diff($end)->days + 1 . ' days';
+                                    ?></td>
+                                    <td><?= esc($request['reason']) ?></td>
+                                    <td><span class="badge bg-<?= $request['status'] === 'approved' ? 'success' : ($request['status'] === 'rejected' ? 'danger' : ($request['status'] === 'pending' ? 'warning' : 'secondary')) ?>">
+                                        <?= ucfirst($request['status']) ?></span></td>
+                                    <td><?= date('M d, Y H:i', strtotime($request['created_at'])) ?></td>
+                                    <td><a href="<?= base_url('leave-request/view/' . $request['id']) ?>" class="btn btn-info btn-sm">View</a></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
