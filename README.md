@@ -1,15 +1,18 @@
 # Employee Leave Management System
 
-A web-based system for managing employee leave requests and approvals.
+A web-based system for managing employee leave requests, approvals and balances. It is built using CodeIgniter 4 (PHP framework), MySQL, Bootstrap 5, and standard web technologies.
+
 
 ## Features
 - User Registration & Activation (admin approval required)
-- Leave Request Management
+- Leave Request Management (admin controls leave approval/reject)
 - Leave Balance Tracking
 - Leave History Reports
 - Admin Dashboard for Approvals
+- View-Modify user profiles and password (controls only by admin)
 
 ## Technology Stack
+- Framework: CodeIgniter 4
 - PHP 8.1+
 - MySQL 5.7+
 - HTML5, CSS3, JavaScript
@@ -29,12 +32,23 @@ A web-based system for managing employee leave requests and approvals.
 
 ### Database Setup
 1. Start your MySQL server
-2. Import the database schema from `database/leave_management_system.sql`
+2. Import the database schema from `app/database/leave_management_system.sql`
 3. Update database credentials in the `.env` file if needed.
 
-### Application Setup
+### Application Setup / Usage Instructions
 1. Place all files in your web server's document root (e.g., `htdocs`)
 2. Ensure the web server has write permissions for the application directory
+3. Run `composer install` in the project directory to install dependencies:
+     ```bash
+     composer install
+     ```
+4. Ensure the `writable/` directory has write permissions.
+5. **Start the Web Server**:
+   - Start Apache and MySQL from the XAMPP control panel.
+   - Access the application in your browser at:
+     ```
+     http://localhost/leave-management-system-ci/public
+     ```
 
 ### Default Admin Credentials
 - Username: `admin@example.com`
@@ -71,6 +85,7 @@ A web-based system for managing employee leave requests and approvals.
 - Approve/reject employee registrations
 - Approve/reject leave requests
 - View all employee leave records
+- Edit employee details or reset new password
 
 ## Security Features
 - Password hashing
@@ -94,4 +109,4 @@ A web-based system for managing employee leave requests and approvals.
 ```
 
 ## Support
-For any issues or questions, please contact the system administrator. 
+For any issues or questions, please contact Leishangthem Michael Meitei. 
