@@ -96,6 +96,7 @@
                                 <th>Leave Type</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
+                                <th>Reason</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -106,6 +107,7 @@
                                     <td><?= esc($request['leave_type_name']) ?></td>
                                     <td><?= date('M d, Y', strtotime($request['start_date'])) ?></td>
                                     <td><?= date('M d, Y', strtotime($request['end_date'])) ?></td>
+                                    <td><?= esc($request['reason']) ?></td>
                                     <td>
                                         <form action="<?= base_url('leave-request/approve/' . $request['id']) ?>" method="post" class="d-inline">
                                             <?= csrf_field() ?>
@@ -115,6 +117,7 @@
                                             <?= csrf_field() ?>
                                             <button type="submit" class="btn btn-danger btn-sm">Reject</button>
                                         </form>
+                                        <a href="<?= base_url('leave-request/view/' . $request['id']) ?>" class="btn btn-info btn-sm">View</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

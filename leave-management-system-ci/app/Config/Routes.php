@@ -18,6 +18,10 @@ $routes->get('register', 'Auth::register');
 $routes->post('register', 'Auth::store');
 $routes->get('logout', 'Auth::logout');
 
+$routes->get('profile', 'Auth::profile');
+$routes->get('change-password', 'Auth::changePassword');
+$routes->post('change-password', 'Auth::changePassword');
+
 // Dashboard
 $routes->get('dashboard', 'Dashboard::index');
 
@@ -27,6 +31,7 @@ $routes->group('leave-request', function($routes) {
     $routes->post('store', 'LeaveRequest::store');
     $routes->post('approve/(:num)', 'LeaveRequest::approve/$1');
     $routes->post('reject/(:num)', 'LeaveRequest::reject/$1');
+    $routes->get('view/(:num)', 'LeaveRequest::view/$1', ['filter' => 'auth']);
 });
 
 // Leave Type Routes (Admin only)

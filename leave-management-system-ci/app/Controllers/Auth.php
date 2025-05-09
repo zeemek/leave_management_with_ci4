@@ -94,6 +94,18 @@ class Auth extends Controller
 
         return redirect()->to('/login')->with('success', 'Registration successful. Waiting for admin approval.');
     }
+    /// This function is used to display the user profile page
+    public function profile()
+    {
+        if (!$this->session->get('isLoggedIn')) {
+            return redirect()->to('/login');
+        }
+
+        $userId = $this->session->get('userId');
+        $user = $this->userModel->find($userId);
+
+        return view('profile/profile', ['user' => $user]);
+    }
 
     public function logout()
     {

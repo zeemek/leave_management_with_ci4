@@ -112,4 +112,24 @@ class LeaveRequest extends Controller
         $this->leaveRequestModel->update($id, ['status' => 'rejected']);
         return redirect()->to('/dashboard')->with('success', 'Leave request rejected successfully.');
     }
+
+    public function view($id)
+    {
+        if (!$this->session->get('isLoggedIn') || !$this->session->get('isAdmin')) {
+            return redirect()->to('/dashboard');
+        }
+
+        $request = $this->leaveRequestModel
+            ->select('leave_requests.*, users.name as user_name, users.email, leave_types.name as leave_type_name')
+            ->join('users', 'users.id = leave_requests.user_id')
+            ->join('leave_types', 'leave_types.id = leave_requests.leave_type_id')
+            ->where('leave_requests.id', $id)
+            ->first();
+
+        if (!$request) {
+            return redirect()->to('/dashboard')->with('error', 'Leave request not found.');
+        }
+
+        return view('leave_requests/view', ['request' => $request]);
+    }
 } 
