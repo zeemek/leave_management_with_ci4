@@ -46,3 +46,5 @@ $routes->group('leave-types', function($routes) {
 
 $routes->get('admin/activate/(:num)', 'Admin::activate/$1');
 $routes->get('admin/deactivate/(:num)', 'Admin::deactivate/$1');
+$routes->get('admin/edit/(:num)', 'Admin::edit/$1', ['filter' => 'auth']);
+$routes->post('admin/update/(:num)', 'Admin::update/$1', ['filter' => 'auth']);
