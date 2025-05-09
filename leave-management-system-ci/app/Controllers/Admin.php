@@ -81,4 +81,17 @@ class Admin extends Controller
         }
         return redirect()->to('/admin/edit/' . $id)->with('success', 'User updated successfully.');
     }
+
+    public function delete($id)
+    {
+        if (!$this->session->get('isLoggedIn') || !$this->session->get('isAdmin')) {
+            return redirect()->to('/dashboard');
+        }
+        $user = $this->userModel->find($id);
+        if (!$user) {
+            return redirect()->to('/dashboard')->with('error', 'User not found.');
+        }
+        $this->userModel->delete($id);
+        return redirect()->to('/dashboard')->with('success', 'User deleted successfully.');
+    }
 } 
