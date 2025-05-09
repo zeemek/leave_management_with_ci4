@@ -112,4 +112,57 @@ class Auth extends Controller
         $this->session->destroy();
         return redirect()->to('/login');
     }
+
+    public function updateProfile()
+    {
+        if (!$this->session->get('isLoggedIn') || !$this->session->get('isAdmin')) {
+            return redirect()->to('/profile');
+        }
+        $userId = $this->session->get('userId');
+        $rules = [
+            'name' => 'required|min_length[3]',
+            'email' => 'required|valid_email',
+        ];
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+        $this->userModel->update($userId, [
+            'name' => $this->request->getPost('name'),
+            'email' => $this->request->getPost('email'),
+        ]);
+        // Update session values
+        $this->session->set('name', $this->request->getPost('name'));
+        $this->session->set('email', $this->request->getPost('email'));
+        return redirect()->to('/profile')->with('success', 'Profile updated successfully.');
+    }
+
+    public function resetPassword()
+    {
+        if (!$this->session->get('isLoggedIn') || !$this->session->get('isAdmin')) {
+            return redirect()->to('/profile');
+        }
+        $userId = $this->session->get('userId');
+        $user = $this->userModel->find($userId);
+
+        $currentPassword = $this->request->getPost('current_password');
+        $newPassword = $this->request->getPost('new_password');
+        $confirmPassword = $this->request->getPost('confirm_password');
+
+        // Check current password
+        if (!$this->userModel->verifyPassword($currentPassword, $user['password'])) {
+            return redirect()->to('/profile')->with('error', 'Current password is incorrect.');
+        }
+        // Validate new password
+        if (strlen($newPassword) < 6) {
+            return redirect()->to('/profile')->with('error', 'New password must be at least 6 characters.');
+        }
+        if ($newPassword !== $confirmPassword) {
+            return redirect()->to('/profile')->with('error', 'New password and confirmation do not match.');
+        }
+        // Update password
+        $this->userModel->update($userId, [
+            'password' => $newPassword
+        ]);
+        return redirect()->to('/profile')->with('success', 'Password updated successfully.');
+    }
 } 

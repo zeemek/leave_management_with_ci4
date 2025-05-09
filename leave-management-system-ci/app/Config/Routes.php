@@ -19,8 +19,10 @@ $routes->post('register', 'Auth::store');
 $routes->get('logout', 'Auth::logout');
 
 $routes->get('profile', 'Auth::profile');
+$routes->post('profile/update', 'Auth::updateProfile', ['filter' => 'auth']);
 $routes->get('change-password', 'Auth::changePassword');
 $routes->post('change-password', 'Auth::changePassword');
+$routes->post('profile/reset-password', 'Auth::resetPassword', ['filter' => 'auth']);
 
 // Dashboard
 $routes->get('dashboard', 'Dashboard::index');
