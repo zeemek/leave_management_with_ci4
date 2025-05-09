@@ -144,6 +144,8 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Casual Leaves Balance</th>
+                                <th>Earned Leaves Balance</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -153,6 +155,8 @@
                                 <tr>
                                     <td><?= esc($user['name']) ?></td>
                                     <td><?= esc($user['email']) ?></td>
+                                    <td><?= esc($user['casual_remaining']) ?></td>
+                                    <td><?= esc($user['earned_remaining']) ?></td>
                                     <td>
                                         <?php if ($user['is_active']): ?>
                                             <span class="badge bg-success">Active</span>

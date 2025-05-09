@@ -39,9 +39,34 @@ class Dashboard extends Controller
             'leaveRequests' => $this->leaveRequestModel->getUserRequests($userId),
             'leaveBalances' => $leaveBalances,
             'pendingRequests' => $this->session->get('isAdmin') ? $this->leaveRequestModel->getPendingRequests() : [],
-            'allUsers' => $this->session->get('isAdmin') ? $this->userModel->where('is_admin', 0)->findAll() : [],
+            'allUsers' => [],
             'recentLeaveRequests' => $this->session->get('isAdmin') ? array_slice($this->leaveRequestModel->getAllRequests(), 0, 10) : []
         ];
+
+        // If admin, enrich allUsers with leave balances
+        if ($this->session->get('isAdmin')) {
+            $userList = $this->userModel->where('is_admin', 0)->findAll();
+            $leaveTypeModel = new \App\Models\LeaveTypeModel();
+            $casualType = $leaveTypeModel->where('name', 'Casual Leave')->first();
+            $earnedType = $leaveTypeModel->where('name', 'Earned Leave')->first();
+            $currentYear = date('Y');
+            foreach ($userList as &$user) {
+                // Get leave balances for this user
+                $balances = $this->leaveBalanceModel->getUserBalances($user['id'], $currentYear);
+                $user['casual_remaining'] = 0;
+                $user['earned_remaining'] = 0;
+                foreach ($balances as $bal) {
+                    if ($casualType && $bal['leave_type_id'] == $casualType['id']) {
+                        $user['casual_remaining'] = $bal['total_days'] - $bal['used_days'];
+                    }
+                    if ($earnedType && $bal['leave_type_id'] == $earnedType['id']) {
+                        $user['earned_remaining'] = $bal['total_days'] - $bal['used_days'];
+                    }
+                }
+            }
+            unset($user); // break reference
+            $data['allUsers'] = $userList;
+        }
 
         return view('dashboard', $data);
     }
