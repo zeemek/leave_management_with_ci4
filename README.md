@@ -84,8 +84,10 @@ A web-based system for managing employee leave requests, approvals and balances.
 ### Admin Features
 - Approve/reject employee registrations
 - Approve/reject leave requests
-- View all employee leave records
+- View all employee leave records/history
 - Edit employee details or reset new password
+- Reset/update own (admin) password or details
+- view all employees leave balances (Casual / Earned Leaves)
 
 ## Security Features
 - Password hashing
