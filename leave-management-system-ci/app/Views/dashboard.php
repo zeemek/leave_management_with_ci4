@@ -144,8 +144,8 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Casual Leaves Balance</th>
-                                <th>Earned Leaves Balance</th>
+                                <th>Casual Leaves Balance(Max 12)</th>
+                                <th>Earned Leaves Balance(Max 30)</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
