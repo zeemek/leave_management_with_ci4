@@ -93,8 +93,8 @@ A web-based system for managing employee leave requests, approvals and balances.
 - Password hashing
 - Session management
 - Input validation
-- SQL injection prevention
-- XSS protection
+- All forms use CSRF protection.
+- SQL injection and XSS are prevented by CodeIgniter's query builder and escaping functions.
 
 ## File Structure
 ```

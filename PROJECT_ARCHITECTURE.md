@@ -62,6 +62,7 @@ This is a web-based application for managing employee leave requests, approvals,
 
 ## Security & Best Practices
 - Passwords are hashed using PHP's `password_hash`.
+- Session management
 - All forms use CSRF protection.
 - Input validation is enforced in controllers.
 - SQL injection and XSS are prevented by CodeIgniter's query builder and escaping functions.
