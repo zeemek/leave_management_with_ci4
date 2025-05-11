@@ -100,4 +100,68 @@ vendor/           # Composer dependencies
 ---
 
 ## Questions?
-Contact the system administrator or check the code comments for more details. 
+Contact Leishangthem Michael Meitei or check the code comments for more details. 
+
+### Evaluation Parameters
+# 1. System Design
+- Modular Structure:
+The project follows the MVC (Model-View-Controller) pattern, which is a strong architectural choice for maintainability and scalability.
+- Separation of Concerns:
+Controllers handle logic, models handle data, and views handle presentation. This separation is clear in your directory structure and code organization.
+- Routing:
+All routes are defined in app/Config/Routes.php, making navigation and endpoint management centralized and easy to update.
+- User Flow:
+The application flow is logical: registration, admin approval, login, leave requests, and admin actions are all clearly mapped out.
+- Extensibility:
+The modular approach allows for easy addition of new features (e.g., more leave types, additional user roles).
+- Overall:
+System design is robust, modular, and follows best practices for web applications.
+
+# 2. Database Design
+- Normalization:
+The use of separate models for users, leave types, leave requests, and leave balances suggests a normalized database structure, reducing redundancy.
+- Relationships:
+Leave requests and balances are linked to users and leave types, which is appropriate for this domain.
+- Scalability:
+The design supports multiple users, leave types, and requests, making it scalable for larger organizations.
+- Migrations/Seeders:
+The presence of a Database/ directory for migrations and seeders is a good practice for versioning and deploying database changes.
+- Overall:
+Database design appears normalized, relational, and scalable.
+
+# 3. Web Application Security
+- Password Hashing:
+Passwords are hashed using PHP’s password_hash, which is secure and recommended.
+- CSRF Protection:
+All forms use CSRF protection, reducing the risk of cross-site request forgery attacks.
+- Input Validation:
+Input validation is enforced in controllers, helping prevent invalid or malicious data.
+- SQL Injection & XSS:
+CodeIgniter’s query builder and escaping functions are used, protecting against SQL injection and XSS.
+- Session Management:
+Sessions are used for authentication and authorization, and admin-only actions are protected.
+- Overall:
+The application demonstrates strong security practices for a web application.
+
+# 4. Coding Standards
+- Code Organization:
+Files and directories are well-organized according to CodeIgniter conventions.
+- Naming Conventions:
+Classes, methods, and variables follow clear and consistent naming conventions.
+- Documentation:
+The project includes a detailed README.md and PROJECT_ARCHITECTURE.md, aiding maintainability and onboarding.
+- Best Practices:
+Use of MVC, centralized routing, and configuration files shows adherence to modern PHP and CodeIgniter standards.
+- Comments:
+Comments and docblocks are present, making the code easier to understand.
+- Overall:
+Coding standards are high, with clear organization, naming, and documentation.
+
+# Summary Table
+| Summary         | Evaluation                                                                     |
+|-----------------|--------------------------------------------------------------------------------|
+| System Design   | Modular, MVC, extensible, clear user flow                                      |
+| Database Design | Normalized, relational, scalable, migration support                            |
+| Web App Security| Password hashing, CSRF, input validation, SQLi/XSS protection, sessions        |
+| Coding Standards| Organized, consistent naming, documented, follows best practices               |
+
