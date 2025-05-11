@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2025 at 07:09 PM
+-- Generation Time: May 11, 2025 at 04:15 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,7 +43,7 @@ CREATE TABLE `leave_balances` (
 --
 
 INSERT INTO `leave_balances` (`id`, `user_id`, `leave_type_id`, `year`, `total_days`, `used_days`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 2025, 12, 1, '2025-05-04 10:53:44', '2025-05-04 10:55:40'),
+(1, 1, 1, 2025, 12, 2, '2025-05-04 10:53:44', '2025-05-09 02:15:17'),
 (2, 1, 2, 2025, 30, 0, '2025-05-04 10:53:44', '2025-05-04 10:53:44'),
 (3, 3, 1, 2025, 12, 1, '2025-05-04 11:15:40', '2025-05-04 11:16:37'),
 (4, 3, 2, 2025, 30, 0, '2025-05-04 11:15:40', '2025-05-04 11:15:40'),
@@ -58,7 +58,11 @@ INSERT INTO `leave_balances` (`id`, `user_id`, `leave_type_id`, `year`, `total_d
 (15, 9, 1, 2025, 12, 0, '2025-05-04 12:53:15', '2025-05-04 12:53:15'),
 (16, 9, 2, 2025, 30, 0, '2025-05-04 12:53:15', '2025-05-04 12:53:15'),
 (19, 11, 1, 2025, 12, 0, '2025-05-04 12:56:49', '2025-05-04 12:56:49'),
-(20, 11, 2, 2025, 30, 0, '2025-05-04 12:56:49', '2025-05-04 12:56:49');
+(20, 11, 2, 2025, 30, 0, '2025-05-04 12:56:49', '2025-05-04 12:56:49'),
+(28, 13, 1, 2025, 12, 1, '2025-05-07 06:35:01', '2025-05-08 02:52:02'),
+(29, 13, 2, 2025, 30, 1, '2025-05-07 06:35:01', '2025-05-08 12:47:06'),
+(36, 17, 1, 2025, 12, 0, '2025-05-09 14:55:44', '2025-05-09 14:55:44'),
+(37, 17, 2, 2025, 30, 0, '2025-05-09 14:55:44', '2025-05-09 14:55:44');
 
 -- --------------------------------------------------------
 
@@ -86,9 +90,13 @@ INSERT INTO `leave_requests` (`id`, `user_id`, `leave_type_id`, `start_date`, `e
 (2, 1, 1, '2025-05-05', '2025-05-05', 'fgdfgdsfgdfg', 'approved', '2025-05-04 10:55:38', '2025-05-04 10:55:40'),
 (4, 3, 1, '2025-05-06', '2025-05-06', 'fgsdfgdsfgsdfgdsfgsdfg', 'approved', '2025-05-04 11:16:19', '2025-05-04 11:16:37'),
 (5, 3, 2, '2025-05-12', '2025-05-12', 'just for the testing purpose only ', 'rejected', '2025-05-04 12:09:47', '2025-05-04 12:10:00'),
-(6, 1, 1, '2025-05-29', '2025-05-29', 'sdfasdfsadfasdfasdf', 'pending', '2025-05-04 12:21:38', '2025-05-04 12:21:38'),
-(7, 4, 1, '2025-05-23', '2025-05-23', 'sdfasdfasdfasdfasdf', 'pending', '2025-05-04 12:21:57', '2025-05-04 12:21:57'),
-(8, 6, 1, '2025-05-06', '2025-05-06', 'dfgdfgdfgdfgdfg', 'approved', '2025-05-04 13:26:25', '2025-05-04 13:26:47');
+(6, 1, 1, '2025-05-29', '2025-05-29', 'sdfasdfsadfasdfasdf', 'approved', '2025-05-04 12:21:38', '2025-05-09 02:15:17'),
+(7, 4, 1, '2025-05-23', '2025-05-23', 'sdfasdfasdfasdfasdf', 'rejected', '2025-05-04 12:21:57', '2025-05-09 14:40:28'),
+(8, 6, 1, '2025-05-06', '2025-05-06', 'dfgdfgdfgdfgdfg', 'approved', '2025-05-04 13:26:25', '2025-05-04 13:26:47'),
+(9, 13, 1, '2025-05-17', '2025-05-17', 'hfghfghdfgfghfghfghdfghdfghfgh', 'approved', '2025-05-08 02:51:48', '2025-05-08 02:52:02'),
+(10, 13, 2, '2025-05-17', '2025-05-17', 'fsadfasdfasdfasdfasdfs', 'approved', '2025-05-08 12:46:47', '2025-05-08 12:47:06'),
+(11, 5, 1, '2025-05-19', '2025-05-21', 'this is just a test', 'pending', '2025-05-09 02:11:21', '2025-05-09 02:11:21'),
+(12, 4, 1, '2025-05-30', '2025-05-30', 'this is for the testing ', 'pending', '2025-05-09 14:41:26', '2025-05-09 14:41:26');
 
 -- --------------------------------------------------------
 
@@ -162,14 +170,16 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `is_admin`, `created_at`, `updated_at`, `is_active`) VALUES
-(1, 'Admin', 'admin@example.com', '$2y$10$rJg7pYWFQOyl9Tp0bRXHcevfUvulc6PfSSQk8Ugz1OX/EKT2OAjSC', 1, '2025-05-04 10:53:44', '2025-05-04 10:53:44', 1),
-(3, 'test1', 'test1@gmail.com', '$2y$10$iMQFkLfv/WpPx8tF5yS5.eOhOUs.WmYRY3y.BwavW2v.l78yqx9p6', 0, '2025-05-04 11:15:39', '2025-05-04 11:15:39', 1),
-(4, 'test', 'test@gmail.com', '$2y$10$AkGVzIt83BY75ghchgD.guX1hHoju9IsYfZ1B8tHG777eSnYMz1Zy', 0, '2025-05-04 12:02:31', '2025-05-04 12:02:31', 1),
+(1, 'Admin', 'admin@example.com', '$2y$10$e7WR9utYPh3PRkrHh1cFjuieH5MhI0g1lD.spYeDzPHW5y/8cFN.y', 1, '2025-05-04 10:53:44', '2025-05-09 15:42:54', 1),
+(3, 'test1', 'test1@gmail.com', '$2y$10$iMQFkLfv/WpPx8tF5yS5.eOhOUs.WmYRY3y.BwavW2v.l78yqx9p6', 0, '2025-05-04 11:15:39', '2025-05-09 13:18:32', 1),
+(4, 'test', 'test@gmail.com', '$2y$10$AkGVzIt83BY75ghchgD.guX1hHoju9IsYfZ1B8tHG777eSnYMz1Zy', 0, '2025-05-04 12:02:31', '2025-05-09 02:15:12', 1),
 (5, 'test2', 'test2@gmail.com', '$2y$10$ZJMQAw2KmzIdN3oA9C8tguoT0v9T1xzrduXaqWpeT5HOqLSv62fXO', 0, '2025-05-04 12:10:40', '2025-05-04 12:10:40', 1),
-(6, 'test3', 'test3@gmail.com', '$2y$10$pGXzk6T50y29eVCAZQAQOOEAIG6ve7ruK7z.NeYHnhOuR.cluHq6C', 0, '2025-05-04 12:19:16', '2025-05-04 16:44:10', 1),
+(6, 'test3', 'test3@gmail.com', '$2y$10$pGXzk6T50y29eVCAZQAQOOEAIG6ve7ruK7z.NeYHnhOuR.cluHq6C', 0, '2025-05-04 12:19:16', '2025-05-09 14:56:04', 1),
 (8, 'test4', 'test4@gmail.com', '$2y$10$k3RUR5ef/yIZpQn5E3Q6g.xrtne771Y3VMLuBgS/2yWUuMCWZIOkK', 0, '2025-05-04 12:52:19', '2025-05-04 12:52:19', 0),
 (9, 'test5', 'test5@gmail.com', '$2y$10$r/BB6vPtCQgWLzzLz2sk8.IZTzbxJwnV0ZipzQIxVFsPzMTMWnXN6', 0, '2025-05-04 12:53:15', '2025-05-04 12:53:15', 0),
-(11, 'test6', 'test6@gmail.com', '$2y$10$l8bIkMzjfXpEDeqyRs5zvO//8fEvjKSLOmQKRVilOAlmK67V1ZM6O', 0, '2025-05-04 12:56:49', '2025-05-04 12:56:49', 0);
+(11, 'test6', 'test6@gmail.com', '$2y$10$l8bIkMzjfXpEDeqyRs5zvO//8fEvjKSLOmQKRVilOAlmK67V1ZM6O', 0, '2025-05-04 12:56:49', '2025-05-08 12:45:50', 0),
+(13, 'test7', 'test7@gmail.com', '$2y$10$P/sCcpfgRVSLV43qEQ2DBeFwB6cPDepz5bx2tYCqABqJrXNizREIy', 0, '2025-05-07 06:35:01', '2025-05-09 03:28:13', 1),
+(17, 'test22', 'test22@gmail.com', '$2y$10$F0iJhiWPJ7rNLWAa2gEVne3fvEYulsjW0e6rvy9dSgwacVG6IXm0O', 0, '2025-05-09 14:55:44', '2025-05-11 02:13:30', 1);
 
 --
 -- Indexes for dumped tables
@@ -218,13 +228,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `leave_balances`
 --
 ALTER TABLE `leave_balances`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `leave_requests`
 --
 ALTER TABLE `leave_requests`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `leave_types`
@@ -242,7 +252,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
