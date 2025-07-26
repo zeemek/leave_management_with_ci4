@@ -112,3 +112,13 @@ A web-based system for managing employee leave requests, approvals and balances.
 
 ## Support
 For any issues or questions, please contact Leishangthem Michael Meitei. 
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).  
+You are free to use, modify, and distribute this code in any project (including commercial use),  
+but you **must retain the license and credit the original author**.
+
+### Attribution
+Author: **Leishangthem Michael Meitei**  
+GitHub: [github.com/zeemek](https://github.com/zeemek)
